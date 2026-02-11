@@ -1,0 +1,521 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026丙午馬年 九宮飛星全方位開運指南</title>
+    <style>
+        :root {
+            --primary-color: #8B0000; /* Dark Red */
+            --secondary-color: #D4AF37; /* Gold */
+            --bg-color: #fdfbf7;
+            --text-color: #333;
+            --card-bg: #fff;
+            --box-bg: #fff8e1;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", "Heiti TC", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 1px solid var(--secondary-color);
+            padding-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin: 0 0 15px 0;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #555;
+            font-weight: normal;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        /* Card Styling */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 25px;
+            padding-top: 60px; /* Space for the top badge */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        /* --- Top Left Direction Badge --- */
+        .direction-badge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg, var(--primary-color), #a00000);
+            color: white;
+            padding: 10px 25px;
+            font-size: 1.25rem;
+            font-weight: bold;
+            border-bottom-right-radius: 16px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+            z-index: 2;
+            letter-spacing: 1px;
+        }
+
+        /* --- Top Right Star Number --- */
+        .star-num {
+            position: absolute;
+            top: 5px;
+            right: 20px;
+            font-size: 4rem;
+            font-weight: 900;
+            color: rgba(0,0,0,0.04); /* Subtle Watermark */
+            line-height: 1;
+            z-index: 1;
+            font-family: 'Times New Roman', serif;
+        }
+
+        /* Card Title */
+        .star-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .star-type {
+            font-size: 0.9rem;
+            margin-left: 10px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            vertical-align: middle;
+        }
+        .type-good { background-color: #e8f5e9; color: #2e7d32; }
+        .type-bad { background-color: #ffebee; color: #c62828; }
+
+        /* Focus Section */
+        .focus-section {
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            color: #444;
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary-color);
+        }
+        .focus-label {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-right: 5px;
+        }
+
+        /* Full Content Text */
+        .content {
+            font-size: 1rem;
+            text-align: justify;
+            margin-bottom: 25px;
+            color: #555;
+            flex-grow: 1; /* Pushes the solution box to the bottom */
+        }
+        
+        .content p {
+            margin: 0;
+        }
+
+        /* --- Separated Solution Box --- */
+        .solution-box {
+            background-color: var(--box-bg);
+            border: 2px solid #ecdca8;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: auto;
+        }
+
+        .solution-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #9c6500;
+            margin-bottom: 10px;
+            font-weight: bold;
+            display: block;
+            border-bottom: 1px dashed #dcc080;
+            padding-bottom: 5px;
+        }
+
+        .solution-row {
+            display: flex;
+            margin-bottom: 8px;
+            align-items: flex-start;
+        }
+
+        .solution-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .solution-label {
+            font-weight: bold;
+            color: #333;
+            min-width: 50px;
+            font-size: 0.95rem;
+            margin-right: 10px;
+        }
+
+        .solution-val {
+            font-size: 0.95rem;
+            color: #333;
+            line-height: 1.4;
+        }
+        
+        .element-tag {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            box-shadow: 0 2px 4px rgba(139, 0, 0, 0.2);
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>2026 丙午馬年</h1>
+            <div class="subtitle">九宮飛星風水布局完整解析</div>
+        </header>
+
+        <div class="grid">
+
+            <!-- 1. 貪狼星 (Center) -->
+            <div class="card">
+                <div class="direction-badge">中宮</div>
+                <div class="star-num">1</div>
+                <div class="star-title">
+                    貪狼星
+                    <span class="star-type type-good">吉星 (桃花/財運)</span>
+                </div>
+                
+                <div class="focus-section">
+                    <span class="focus-label">影響範疇：</span>人際關係、戀愛運、偏財運、事業升遷
+                </div>
+
+                <div class="content">
+                    <p>一白貪狼星為「未來生氣之星」，主宰人緣與財運。2026年飛入中宮，中宮五行屬土，而一白星屬水，形成「土剋水」的格局。雖然是吉星入主，但受宮位五行剋制，吉氣受阻，容易導致人際關係上的「有心無力」或財運上的阻滯，甚至引發泌尿系統或腎臟方面的隱疾。</p>
+                    <br>
+                    <p><strong>布局策略：</strong>必須採用「通關」之法。利用「金」的能量來轉化，因為土生金、金生水，如此既能洩掉中宮土氣的壓制，又能生旺一白水的吉氣，轉危為安，催旺桃花與財運。</p>
+                </div>
+
+                <div class="solution-box">
+                    <span class="solution-title">開運布局</span>
+                    <div class="solution-row">
+                        <span class="solution-label">五行：</span>
+                        <span class="element-tag">金</span>
+                    </div>
+                    <div class="solution-row">
+                        <span class="solution-label">寶物：</span>
+                        <span class="solution-val">銅製葫蘆、六帝錢、金屬工藝品、白水晶球、圓形金屬時鐘。</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. 巨門星 (NW) -->
+            <div class="card">
+                <div class="direction-badge">西北</div>
+                <div class="star-num">2</div>
+                <div class="star-title">
+                    巨門星
+                    <span class="star-type type-bad">凶星 (病符)</span>
+                </div>
+
+                <div class="focus-section">
+                    <span class="focus-label">影響範疇：</span>身體健康、慢性疾病、腸胃問題
+                </div>
+
+                <div class="content">
+                    <p>二黑巨門星又稱「病符星」，五行屬土，主疾病與痛症。2026年飛臨西北乾宮，乾宮五行屬金。此處形成「土生金」的格局，宮位（金）會洩掉凶星（土）的能量，這是一個相對幸運的組合，凶性會自然減弱。</p>
+                    <br>
+                    <p><strong>布局策略：</strong>雖然凶性減弱，但西北方為男主人之位，仍不可大意。應繼續加強「金」的能量，進一步洩耗土氣，確保病氣不生。切忌在此方放置紅色物品（火）或陶瓷（土），以免火生土、土助土，反助長病符星的凶威。</p>
+                </div>
+
+                <div class="solution-box">
+                    <span class="solution-title">開運布局</span>
+                    <div class="solution-row">
+                        <span class="solution-label">五行：</span>
+                        <span class="element-tag">金</span>
+                    </div>
+                    <div class="solution-row">
+                        <span class="solution-label">寶物：</span>
+                        <span class="solution-val">銅葫蘆（首選）、安忍水、銅鈴、金屬風鈴、六枚乾隆錢。</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. 祿存星 (West) -->
+            <div class="card">
+                <div class="direction-badge">西方</div>
+                <div class="star-num">3</div>
+                <div class="star-title">
+                    祿存星
+                    <span class="star-type type-bad">凶星 (是非)</span>
+                </div>
+
+                <div class="focus-section">
+                    <span class="focus-label">影響範疇：</span>口舌是非、官非訴訟、小人陷害
+                </div>
+
+                <div class="content">
+                    <p>三碧祿存星五行屬木，主爭執與好鬥。2026年飛臨西方兌宮，兌宮五行屬金。這形成了「金剋木」的交戰格局（宮剋星）。這種激烈的剋制會讓三碧星的戾氣更重，容易引發更激烈的衝突、車禍或手腳受傷，家宅不寧。</p>
+                    <br>
+                    <p><strong>布局策略：</strong>不宜硬碰硬，應採用「火」來化解。利用「木生火」的原理，洩掉三碧木的凶氣，同時火也能剋制西方的金氣，達到陰陽平衡。紅色是此方位的最佳化煞色調。</p>
+                </div>
+
+                <div class="solution-box">
+                    <span class="solution-title">開運布局</span>
+                    <div class="solution-row">
+                        <span class="solution-label">五行：</span>
+                        <span class="element-tag">火</span>
+                    </div>
+                    <div class="solution-row">
+                        <span class="solution-label">寶物：</span>
+                        <span class="solution-val">紅色地毯、紅色中國結、長明燈、紫水晶洞、紅瑪瑙擺件。</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. 文昌星 (NE) -->
+            <div class="card">
+                <div class="direction-badge">東北</div>
+                <div class="star-num">4</div>
+                <div class="star-title">
+                    文昌星
+                    <span class="star-type type-good">吉星 (學業/文職)</span>
+                </div>
+
+                <div class="focus-section">
+                    <span class="focus-label">影響範疇：</span>考試運、升職考核、創意靈感、桃花
+                </div>
+
+                <div class="content">
+                    <p>四綠文曲星五行屬木，主管智慧與學業。2026年飛臨東北艮宮，艮宮五行屬土。形成「木剋土」的格局（星剋宮）。雖然木能紮根於土，但過度剋制會消耗文昌星的能量，導致思緒受阻、考試臨場失常或創意枯竭。</p>
+                    <br>
+                    <p><strong>布局策略：</strong>最佳方案是引入「水」的能量。水能生木（補旺文昌），同時水土混和能潤土養木，使文昌星生機勃勃。此方位適合擺放水種植物，既符合木性又帶水氣。</p>
+                </div>
+
+                <div class="solution-box">
+                    <span class="solution-title">開運布局</span>
+                    <div class="solution-row">
+                        <span class="solution-label">五行：</span>
+                        <span class="element-tag">水、木</span>
+                    </div>
+                    <div class="solution-row">
+                        <span class="solution-label">寶物：</span>
+                        <span class="solution-val">四支富貴竹（水養）、文昌塔、毛筆架、黑色或藍色地墊。</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. 廉貞星 (South) -->
+            <div class="card">
+                <div class="direction-badge">南方</div>
+                <div class="star-num">5</div>
+                <div class="star-title">
+                    廉貞星
+                    <span class="star-type type-bad">大凶星 (災煞)</span>
+                </div>
+
+                <div class="focus-section">
+                    <span class="focus-label">影響範疇：</span>意外災禍、重大疾病、破財、血光
+                </div>
+
+                <div class="content">
+                    <p>五黃廉貞星是九星中凶性最強的「正關煞」，五行屬土。2026年飛臨南方離宮，離宮屬火。形成「火生土」的極凶格局！火氣助長五黃土氣，凶性大發。更重要的是，<strong>2026年南方同時是「太歲方」</strong>，五黃與太歲同宮，凶險加倍。</p>
+                    <br>
+                    <p><strong>布局策略：</strong>此方位絕對<strong>不可動土、裝修、鑽牆</strong>。必須用重「金」來洩耗土氣。且因南方火旺，不能用一般的金，最好用「動態的金」或「重金屬」來強力化煞。務必保持安靜。</p>
+                </div>
+
+                <div class="solution-box">
+                    <span class="solution-title">開運布局</span>
+                    <div class="solution-row">
+                        <span class="solution-label">五行：</span>
+                        <span class="element-tag">金</span>
+                    </div>
+                    <div class="solution-row">
+                        <span class="solution-label">寶物：</span>
+                        <span class="solution-val">六層銅風鈴、銅鐘、銅製麒麟（制化太歲）、安忍水、五帝錢。</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. 武曲星 (North) -->
+            <div class="card">
+                <div class="direction-badge">北方</div>
+                <div class="star-num">6</div>
+                <div class="star-title">
+                    武曲星
+                    <span class="star-type type-good">吉星 (偏財/權力)</span>
+                </div>
+
+                <div class="focus-section">
+                    <span class="focus-label">影響範疇：</span>武職升遷、權力地位、偏財運
+                </div>
+
+                <div class="content">
+                    <p>六白武曲星五行屬金，利於武職（軍警、技術人員）及偏財。2026年飛臨北方坎宮，坎宮屬水。形成「金生水」格局（星生宮）。六白金氣洩於坎水，吉星能量減弱，容易導致財來財去，或者權力被架空。此外，北方在2026年為「歲破方」，不宜大動。</p>
+                    <br>
+                    <p><strong>布局策略：</strong>需要「土」來生旺金，或者直接用「金」來幫身。增強六白星的能量，防止其過度洩氣。同時土能制水，避免水氣過旺沖散財氣。</p>
+                </div>
+
+                <div class="solution-box">
+                    <span class="solution-title">開運布局</span>
+                    <div class="solution-row">
+                        <span class="solution-label">五行：</span>
+                        <span class="element-tag">土、金</span>
+                    </div>
+                    <div class="solution-row">
+                        <span class="solution-label">寶物：</span>
+                        <span class="solution-val">黃玉元寶、陶瓷聚寶盆、黃色地毯、金屬算盤、白水晶陣。</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. 破軍星 (SW) -->
+            <div class="card">
+                <div class="direction-badge">西南</div>
+                <div class="star-num">7</div>
+                <div class="star-title">
+                    破軍星
+                    <span class="star-type type-bad">凶星 (破財)</span>
+                </div>
+
+                <div class="focus-section">
+                    <span class="focus-label">影響範疇：</span>破財漏財、盜賊搶劫、桃色醜聞
+                </div>
+
+                <div class="content">
+                    <p>七赤破軍星五行屬金，為退運之星，主破耗與口舌。2026年飛臨西南坤宮，坤宮屬土。形成「土生金」格局（宮生星）。這會助長七赤星的凶性，容易引發更嚴重的財務損失或因桃色糾紛而破財。西南方為女主人位，需防女性長輩健康或運勢受損。</p>
+                    <br>
+                    <p><strong>布局策略：</strong>必須用「水」來洩金氣。利用水行能量將金氣轉化，使其無法作惡。此處亦可視為偏財位進行催旺，但風險較高，建議以「化煞」為主，求穩不求險。</p>
+                </div>
+
+                <div class="solution-box">
+                    <span class="solution-title">開運布局</span>
+                    <div class="solution-row">
+                        <span class="solution-label">五行：</span>
+                        <span class="element-tag">水</span>
+                    </div>
+                    <div class="solution-row">
+                        <span class="solution-label">寶物：</span>
+                        <span class="solution-val">黑曜石七星陣、藍色波浪紋地毯、一杯清水（每日更換）、黑水晶。</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. 左輔星 (East) -->
+            <div class="card">
+                <div class="direction-badge">東方</div>
+                <div class="star-num">8</div>
+                <div class="star-title">
+                    左輔星
+                    <span class="star-type type-good">吉星 (正財)</span>
+                </div>
+
+                <div class="focus-section">
+                    <span class="focus-label">影響範疇：</span>薪資收入、房地產運、整體財運
+                </div>
+
+                <div class="content">
+                    <p>八白左輔星五行屬土，雖已退氣（九運中八白為退氣星），但仍具備財星本質。2026年飛臨東方震宮，震宮屬木。形成「木剋土」格局（宮剋星）。財星受剋，意味著求財辛苦，容易因外在環境變動而損財，或者合作破局。</p>
+                    <br>
+                    <p><strong>布局策略：</strong>急需「火」來通關。利用「木生火、火生土」的循環相生，將東方木氣轉化為火，再去生旺八白土，讓阻力變助力。此處保持明亮、放置紅色物品非常重要。</p>
+                </div>
+
+                <div class="solution-box">
+                    <span class="solution-title">開運布局</span>
+                    <div class="solution-row">
+                        <span class="solution-label">五行：</span>
+                        <span class="element-tag">火</span>
+                    </div>
+                    <div class="solution-row">
+                        <span class="solution-label">寶物：</span>
+                        <span class="solution-val">紅色中國結、紫水晶洞（含火土之氣）、紅燈籠、鹽燈、紅色鮮花。</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. 右弼星 (SE) -->
+            <div class="card">
+                <div class="direction-badge">東南</div>
+                <div class="star-num">9</div>
+                <div class="star-title">
+                    右弼星
+                    <span class="star-type type-good">大吉星 (喜慶)</span>
+                </div>
+
+                <div class="focus-section">
+                    <span class="focus-label">影響範疇：</span>結婚生子、表揚獎勵、短期投資、人氣
+                </div>
+
+                <div class="content">
+                    <p>九紫右弼星五行屬火，是下元九運（2024-2043）的「當令旺星」，能量最強。2026年飛臨東南巽宮，巽宮屬木。形成「木生火」的絕佳格局（宮生星）。木火通明，喜氣洋洋，是全屋最旺的方位！利於置業、結婚、添丁及提升名氣。</p>
+                    <br>
+                    <p><strong>布局策略：</strong>宜加強「木」與「火」的能量。保持此方位整潔明亮，多放綠色植物助燃火氣，或直接用紅色物品催旺。此處氣場越旺，家運越順。</p>
+                </div>
+
+                <div class="solution-box">
+                    <span class="solution-title">開運布局</span>
+                    <div class="solution-row">
+                        <span class="solution-label">五行：</span>
+                        <span class="element-tag">木、火</span>
+                    </div>
+                    <div class="solution-row">
+                        <span class="solution-label">寶物：</span>
+                        <span class="solution-val">闊葉常綠植物、紅色地毯、聚寶盆、粉晶陣、開運紅燈。</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body></html>
