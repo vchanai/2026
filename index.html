@@ -1,337 +1,371 @@
-import React from 'react';
-import { Heart, Shield, AlertTriangle, BookOpen, Briefcase, DollarSign, Sparkles, Star, Zap } from 'lucide-react';
-
-const FengShui2026Purple = () => {
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026丙午馬年．九宮飛星</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- React and ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
-    const Icons = {
-        Heart: Heart,
-        Shield: Shield,
-        Alert: AlertTriangle,
-        Book: BookOpen,
-        Briefcase: Briefcase,
-        Dollar: DollarSign,
-        Sparkles: Sparkles,
-        Star: Star,
-        Zap: Zap
-    };
+    <style>
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50">
+    <div id="root"></div>
 
-    // Helper function to determine badge color based on element text
-    const getElementColor = (text) => {
-        if (text.includes('金')) return 'bg-amber-500';
-        if (text.includes('木')) return 'bg-emerald-600';
-        if (text.includes('水')) return 'bg-sky-600';
-        if (text.includes('火')) return 'bg-rose-500'; // Red/Rose for Fire
-        if (text.includes('土')) return 'bg-stone-500';
-        return 'bg-slate-500';
-    };
+    <script type="text/babel">
+        // Icon Components (Inline SVGs for standalone usage)
+        const Heart = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+        );
+        const Shield = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        );
+        const AlertTriangle = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        );
+        const BookOpen = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        );
+        const Briefcase = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        );
+        const DollarSign = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        );
+        const Sparkles = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+        );
 
-    const stars = [
-        {
-            id: 1,
-            num: 1,
-            name: "貪狼星",
-            type: "good",
-            typeLabel: "未來財位 (桃花位)",
-            direction: "中宮",
-            element: "水",
-            periodStatus: "生氣吉星（未來財星）",
-            focus: "人緣財、長遠投資、貴人運、事業根基",
-            desc: [
-                "「一白貪狼星」在九運中被稱為「生氣星」，吉氣僅次於當令的九紫星，代表著未來的財富與機會。2026年一白入中宮，意味著居家氣場的核心由「智慧、人脈、流動」主導。",
-                "一白屬水，入中宮土位，受土剋制。雖然土剋水，但中宮宜靜不宜動，且不宜受重剋。最佳策略是「金行通關」。利用金屬擺件化解土氣，同時生旺一白水星。",
-                "注意：中宮是全屋心臟，今年切忌堆放雜物，必須保持明亮、整潔，才能讓這顆未來財星的能量擴散至全屋。"
-            ],
-            cureElement: "金行",
-            cureItems: "銅製聚寶盆、白水晶球、金屬工藝品（如銅龍、銅如意）",
-            IconComponent: Icons.Heart
-        },
-        {
-            id: 2,
-            num: 2,
-            name: "巨門星",
-            type: "bad",
-            typeLabel: "病符位",
-            direction: "西北",
-            element: "土",
-            periodStatus: "病符凶星",
-            focus: "健康運、男主人運勢",
-            desc: [
-                "「二黑巨門星」主病災與晦氣。在九運中，雖其凶性稍減（轉為遠旺星），但對健康影響依然顯著，不可掉以輕心。西北方代表家中男主人（父親），故今年父親的健康需特別照護。",
-                "二黑飛臨西北（乾宮，屬金）。宮位金氣自然洩化土星凶氣（土生金），這是「宮星相生」的好格局。我們只需順勢而為，加強「金行」能量，徹底抽乾病符土氣。"
-            ],
-            cureElement: "金行",
-            cureItems: "銅葫蘆（首選，吸納病氣）、六帝錢、金屬風鈴、銅鐘",
-            IconComponent: Icons.Shield
-        },
-        {
-            id: 3,
-            num: 3,
-            name: "祿存星",
-            type: "bad",
-            typeLabel: "是非位",
-            direction: "西方",
-            element: "木",
-            periodStatus: "死氣凶星",
-            focus: "防官非訴訟、口舌爭吵、呼吸系統健康",
-            desc: [
-                "「三碧祿存星」在九運為死氣之星，凶性頑強，主爭鬥、官非、小人。飛臨西方（兌宮，屬金），形成「金木交戰」的格局，容易引發車禍、刀傷或激烈的爭吵。",
-                "金剋木會激發三碧的怒氣，硬碰硬反而不美。最佳解法是用「火行」通關。火能剋金（保護木不被金傷太重），同時洩木（消耗三碧的凶氣），達到「貪生忘剋」的和平局面。"
-            ],
-            cureElement: "火行",
-            cureItems: "紅色中國結、紫水晶洞、紅色地墊、長明燈",
-            IconComponent: Icons.Alert
-        },
-        {
-            id: 4,
-            num: 4,
-            name: "文昌星",
-            type: "good",
-            typeLabel: "文昌位",
-            direction: "東北",
-            element: "木",
-            periodStatus: "文昌吉星",
-            focus: "學業考運、升職考核、創意靈感",
-            desc: [
-                "「四綠文昌星」雖在九運中氣運稍退，但仍專管功名與智慧。飛臨東北（艮宮，屬土），形成「木剋土」格局，吉星受損。",
-                "為了保護文昌星，必須用「水行」來滋養。水能生木（壯大文昌），同時水也是財，能潤澤東北土氣。此處適合擺放水耕植物（如富貴竹），既有水又有木，一舉兩得。"
-            ],
-            cureElement: "水行",
-            cureItems: "文昌塔（黑色或綠色）、四支富貴竹（水養）、黑曜石文昌筆",
-            IconComponent: Icons.Book
-        },
-        {
-            id: 5,
-            num: 5,
-            name: "廉貞星",
-            type: "bad",
-            typeLabel: "災煞位 (太歲位)",
-            direction: "南方",
-            element: "土",
-            periodStatus: "大凶星（正關煞）",
-            focus: "化解血光、災禍、安奉太歲（絕對不可動土）",
-            desc: [
-                "這是2026年最危險的方位！「五黃廉貞星」飛臨南方（離宮，屬火）。火生土，火氣助長了五黃的凶性；更糟的是，南方是馬年的「太歲方」。五黃加太歲，又得火生，凶性倍增！",
-                "策略：",
-                "1. 全面洩煞：必須大量使用「金行」（銅器）來強力洩掉土氣。",
-                "2. 嚴禁紅色：絕對不可見紅、紫色物品，也不可點燈。",
-                "3. 絕對靜止：此方位今年絕對不可動土、鑽牆、裝修，甚至大力關門都要避免。"
-            ],
-            cureElement: "金行",
-            cureItems: "大型銅葫蘆、六帝錢（必須是真銅）、安忍水、銅片畫",
-            IconComponent: Icons.Alert
-        },
-        {
-            id: 6,
-            num: 6,
-            name: "武曲星",
-            type: "good",
-            typeLabel: "偏財位 (歲破位)",
-            direction: "北方",
-            element: "金",
-            periodStatus: "吉星（權力、偏財）",
-            focus: "職場升遷、創業、意外之財",
-            desc: [
-                "「六白武曲星」飛臨北方（坎宮，屬水）。金生水，吉星之氣被宮位洩耗，且北方為「歲破方」（沖太歲），氣場極不穩定。",
-                "六白星需要生旺，歲破方需要鎮壓。最佳方案是用「土行」。土能生金（補六白之氣），土能剋水（穩住北方浮動之氣），土重亦能鎮宅。"
-            ],
-            cureElement: "土行",
-            cureItems: "黃玉聚寶盆、陶瓷貔貅、泰山石敢當（鎮歲破）、黃色地墊",
-            IconComponent: Icons.Briefcase
-        },
-        {
-            id: 7,
-            num: 7,
-            name: "破軍星",
-            type: "bad",
-            typeLabel: "破財位 (盜劫位)",
-            direction: "西南",
-            element: "金",
-            periodStatus: "退運凶星",
-            focus: "防詐騙、防盜竊、防桃花劫",
-            desc: [
-                "「七赤破軍星」在九運為退氣之星，主破財與口舌。飛臨西南（坤宮，屬土），土生金，宮位助長了破軍的凶性，容易引發小人得志、詐騙破財。",
-                "宜洩不宜生。必須用「水行」來洩掉金氣，將肅殺之氣轉化為財水。此處最忌黃色（土）與紅色（火），保持冷色調布局為佳。"
-            ],
-            cureElement: "水行",
-            cureItems: "安忍水（最強效）、黑曜石七星陣、藍色波浪紋地墊",
-            IconComponent: Icons.Shield
-        },
-        {
-            id: 8,
-            num: 8,
-            name: "左輔星",
-            type: "good",
-            typeLabel: "正財位 (穩財位)",
-            direction: "東方",
-            element: "土",
-            periodStatus: "退氣財星（守財星）",
-            focus: "薪資穩定、儲蓄增長、置產",
-            desc: [
-                "「八白左輔星」在九運雖然退氣，不再是暴富之星，但仍是吉星，主「正財、薪水、積蓄」。飛臨東方（震宮，屬木），木剋土，財星受損。",
-                "要救八白星，必須用「火行」通關。木生火，火生土，形成「官印相生」的吉局。這裡適合點燈或擺放紅色物品，能讓薪水穩定，財庫豐盈。"
-            ],
-            cureElement: "火行",
-            cureItems: "紅色聚寶盆、鹽燈、紫晶洞（內含火土能量）、紅瑪瑙",
-            IconComponent: Icons.Dollar
-        },
-        {
-            id: 9,
-            num: 9,
-            name: "右弼星",
-            type: "good",
-            typeLabel: "當令財位 (喜慶位)",
-            direction: "東南",
-            element: "火",
-            periodStatus: "當令第一大財星 👑",
-            focus: "暴富、名聲、結婚生子、頂級貴人",
-            desc: [
-                "這是2026年最強的吉位！「九紫右弼星」是九運的「當令財星」，掌管最高等級的財富與喜慶。飛臨東南（巽宮，屬木），形成「木火通明」的絕佳格局（木生火），吉上加吉！",
-                "此方位要「火上加火」或「木火相生」。務必保持明亮、熱鬧，多擺放紅色、紫色物品，或常開燈具。這是催旺財運、求姻緣、求名氣的最佳方位，在此辦公或休息，運勢將如日中天。"
-            ],
-            cureElement: "火行、木行",
-            cureItems: "紫水晶洞（催財）、紅色鮮花（催桃花）、長明燈、九隻紅鶴擺件",
-            IconComponent: Icons.Sparkles
-        }
-    ];
+        const FengShui2026Purple = () => {
+            
+            // Helper function to determine badge color based on element text
+            const getElementColor = (text) => {
+                if (text.includes('金')) return 'bg-amber-500';
+                if (text.includes('木')) return 'bg-emerald-600';
+                if (text.includes('水')) return 'bg-sky-600';
+                if (text.includes('火')) return 'bg-rose-500'; // Red/Rose for Fire
+                if (text.includes('土')) return 'bg-stone-500';
+                return 'bg-slate-500';
+            };
 
-    return (
-        <div className="min-h-screen bg-slate-50 text-slate-800 font-sans py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto">
-                
-                {/* Header Section */}
-                <header className="text-center mb-16 relative">
-                    {/* Decorative background element */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-violet-200 rounded-full blur-3xl opacity-30 -z-10"></div>
-                    
-                    {/* Title: Maximized One Line */}
-                    <h1 className="w-full whitespace-nowrap text-center font-black text-indigo-900 mb-6 drop-shadow-sm
-                        text-xl min-[375px]:text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tighter sm:tracking-normal">
-                        2026丙午馬年．九宮飛星 開運布局
-                    </h1>
-                    
-                    <div className="flex flex-col gap-2 justify-center items-center text-slate-600 font-medium text-sm md:text-base">
-                        <div className="flex items-center gap-2 bg-white/60 px-4 py-1 rounded-full shadow-sm border border-slate-100">
-                            <span className="text-lg">🔥</span>
-                            <span className="text-indigo-800 font-semibold">九運核心：火運當令，九紫為尊，一白為輔</span>
-                        </div>
-                    </div>
-                </header>
+            const stars = [
+                {
+                    id: 1,
+                    num: 1,
+                    name: "貪狼星",
+                    type: "good",
+                    typeLabel: "未來財位 (桃花位)",
+                    direction: "中宮",
+                    element: "水",
+                    periodStatus: "生氣吉星（未來財星）",
+                    focus: "人緣財、長遠投資、貴人運、事業根基",
+                    desc: [
+                        "「一白貪狼星」在九運中被稱為「生氣星」，吉氣僅次於當令的九紫星，代表著未來的財富與機會。2026年一白入中宮，意味著居家氣場的核心由「智慧、人脈、流動」主導。",
+                        "一白屬水，入中宮土位，受土剋制。雖然土剋水，但中宮宜靜不宜動，且不宜受重剋。最佳策略是「金行通關」。利用金屬擺件化解土氣，同時生旺一白水星。",
+                        "注意：中宮是全屋心臟，今年切忌堆放雜物，必須保持明亮、整潔，才能讓這顆未來財星的能量擴散至全屋。"
+                    ],
+                    cureElement: "金行",
+                    cureItems: "銅製聚寶盆、白水晶球、金屬工藝品（如銅龍、銅如意）",
+                    IconComponent: Heart
+                },
+                {
+                    id: 2,
+                    num: 2,
+                    name: "巨門星",
+                    type: "bad",
+                    typeLabel: "病符位",
+                    direction: "西北",
+                    element: "土",
+                    periodStatus: "病符凶星",
+                    focus: "健康運、男主人運勢",
+                    desc: [
+                        "「二黑巨門星」主病災與晦氣。在九運中，雖其凶性稍減（轉為遠旺星），但對健康影響依然顯著，不可掉以輕心。西北方代表家中男主人（父親），故今年父親的健康需特別照護。",
+                        "二黑飛臨西北（乾宮，屬金）。宮位金氣自然洩化土星凶氣（土生金），這是「宮星相生」的好格局。我們只需順勢而為，加強「金行」能量，徹底抽乾病符土氣。"
+                    ],
+                    cureElement: "金行",
+                    cureItems: "銅葫蘆（首選，吸納病氣）、六帝錢、金屬風鈴、銅鐘",
+                    IconComponent: Shield
+                },
+                {
+                    id: 3,
+                    num: 3,
+                    name: "祿存星",
+                    type: "bad",
+                    typeLabel: "是非位",
+                    direction: "西方",
+                    element: "木",
+                    periodStatus: "死氣凶星",
+                    focus: "防官非訴訟、口舌爭吵、呼吸系統健康",
+                    desc: [
+                        "「三碧祿存星」在九運為死氣之星，凶性頑強，主爭鬥、官非、小人。飛臨西方（兌宮，屬金），形成「金木交戰」的格局，容易引發車禍、刀傷或激烈的爭吵。",
+                        "金剋木會激發三碧的怒氣，硬碰硬反而不美。最佳解法是用「火行」通關。火能剋金（保護木不被金傷太重），同時洩木（消耗三碧的凶氣），達到「貪生忘剋」的和平局面。"
+                    ],
+                    cureElement: "火行",
+                    cureItems: "紅色中國結、紫水晶洞、紅色地墊、長明燈",
+                    IconComponent: AlertTriangle
+                },
+                {
+                    id: 4,
+                    num: 4,
+                    name: "文昌星",
+                    type: "good",
+                    typeLabel: "文昌位",
+                    direction: "東北",
+                    element: "木",
+                    periodStatus: "文昌吉星",
+                    focus: "學業考運、升職考核、創意靈感",
+                    desc: [
+                        "「四綠文昌星」雖在九運中氣運稍退，但仍專管功名與智慧。飛臨東北（艮宮，屬土），形成「木剋土」格局，吉星受損。",
+                        "為了保護文昌星，必須用「水行」來滋養。水能生木（壯大文昌），同時水也是財，能潤澤東北土氣。此處適合擺放水耕植物（如富貴竹），既有水又有木，一舉兩得。"
+                    ],
+                    cureElement: "水行",
+                    cureItems: "文昌塔（黑色或綠色）、四支富貴竹（水養）、黑曜石文昌筆",
+                    IconComponent: BookOpen
+                },
+                {
+                    id: 5,
+                    num: 5,
+                    name: "廉貞星",
+                    type: "bad",
+                    typeLabel: "災煞位 (太歲位)",
+                    direction: "南方",
+                    element: "土",
+                    periodStatus: "大凶星（正關煞）",
+                    focus: "化解血光、災禍、安奉太歲（絕對不可動土）",
+                    desc: [
+                        "這是2026年最危險的方位！「五黃廉貞星」飛臨南方（離宮，屬火）。火生土，火氣助長了五黃的凶性；更糟的是，南方是馬年的「太歲方」。五黃加太歲，又得火生，凶性倍增！",
+                        "策略：",
+                        "1. 全面洩煞：必須大量使用「金行」（銅器）來強力洩掉土氣。",
+                        "2. 嚴禁紅色：絕對不可見紅、紫色物品，也不可點燈。",
+                        "3. 絕對靜止：此方位今年絕對不可動土、鑽牆、裝修，甚至大力關門都要避免。"
+                    ],
+                    cureElement: "金行",
+                    cureItems: "大型銅葫蘆、六帝錢（必須是真銅）、安忍水、銅片畫",
+                    IconComponent: AlertTriangle
+                },
+                {
+                    id: 6,
+                    num: 6,
+                    name: "武曲星",
+                    type: "good",
+                    typeLabel: "偏財位 (歲破位)",
+                    direction: "北方",
+                    element: "金",
+                    periodStatus: "吉星（權力、偏財）",
+                    focus: "職場升遷、創業、意外之財",
+                    desc: [
+                        "「六白武曲星」飛臨北方（坎宮，屬水）。金生水，吉星之氣被宮位洩耗，且北方為「歲破方」（沖太歲），氣場極不穩定。",
+                        "六白星需要生旺，歲破方需要鎮壓。最佳方案是用「土行」。土能生金（補六白之氣），土能剋水（穩住北方浮動之氣），土重亦能鎮宅。"
+                    ],
+                    cureElement: "土行",
+                    cureItems: "黃玉聚寶盆、陶瓷貔貅、泰山石敢當（鎮歲破）、黃色地墊",
+                    IconComponent: Briefcase
+                },
+                {
+                    id: 7,
+                    num: 7,
+                    name: "破軍星",
+                    type: "bad",
+                    typeLabel: "破財位 (盜劫位)",
+                    direction: "西南",
+                    element: "金",
+                    periodStatus: "退運凶星",
+                    focus: "防詐騙、防盜竊、防桃花劫",
+                    desc: [
+                        "「七赤破軍星」在九運為退氣之星，主破財與口舌。飛臨西南（坤宮，屬土），土生金，宮位助長了破軍的凶性，容易引發小人得志、詐騙破財。",
+                        "宜洩不宜生。必須用「水行」來洩掉金氣，將肅殺之氣轉化為財水。此處最忌黃色（土）與紅色（火），保持冷色調布局為佳。"
+                    ],
+                    cureElement: "水行",
+                    cureItems: "安忍水（最強效）、黑曜石七星陣、藍色波浪紋地墊",
+                    IconComponent: Shield
+                },
+                {
+                    id: 8,
+                    num: 8,
+                    name: "左輔星",
+                    type: "good",
+                    typeLabel: "正財位 (穩財位)",
+                    direction: "東方",
+                    element: "土",
+                    periodStatus: "退氣財星（守財星）",
+                    focus: "薪資穩定、儲蓄增長、置產",
+                    desc: [
+                        "「八白左輔星」在九運雖然退氣，不再是暴富之星，但仍是吉星，主「正財、薪水、積蓄」。飛臨東方（震宮，屬木），木剋土，財星受損。",
+                        "要救八白星，必須用「火行」通關。木生火，火生土，形成「官印相生」的吉局。這裡適合點燈或擺放紅色物品，能讓薪水穩定，財庫豐盈。"
+                    ],
+                    cureElement: "火行",
+                    cureItems: "紅色聚寶盆、鹽燈、紫晶洞（內含火土能量）、紅瑪瑙",
+                    IconComponent: DollarSign
+                },
+                {
+                    id: 9,
+                    num: 9,
+                    name: "右弼星",
+                    type: "good",
+                    typeLabel: "當令財位 (喜慶位)",
+                    direction: "東南",
+                    element: "火",
+                    periodStatus: "當令第一大財星 👑",
+                    focus: "暴富、名聲、結婚生子、頂級貴人",
+                    desc: [
+                        "這是2026年最強的吉位！「九紫右弼星」是九運的「當令財星」，掌管最高等級的財富與喜慶。飛臨東南（巽宮，屬木），形成「木火通明」的絕佳格局（木生火），吉上加吉！",
+                        "此方位要「火上加火」或「木火相生」。務必保持明亮、熱鬧，多擺放紅色、紫色物品，或常開燈具。這是催旺財運、求姻緣、求名氣的最佳方位，在此辦公或休息，運勢將如日中天。"
+                    ],
+                    cureElement: "火行、木行",
+                    cureItems: "紫水晶洞（催財）、紅色鮮花（催桃花）、長明燈、九隻紅鶴擺件",
+                    IconComponent: Sparkles
+                }
+            ];
 
-                {/* Grid Layout */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {stars.map((star) => (
-                        <div 
-                            key={star.id} 
-                            className={`bg-white rounded-2xl shadow-lg overflow-hidden border flex flex-col relative transition-all hover:shadow-2xl hover:-translate-y-1 duration-300 
-                            ${star.num === 5 ? 'border-red-200 ring-1 ring-red-100' : 'border-slate-100'}`}
-                        >
-                            {/* Top Left Direction Badge */}
-                            <div className={`absolute top-0 left-0 text-white font-bold text-lg px-6 py-2 rounded-br-2xl shadow-md z-10 tracking-widest
-                                ${star.num === 5 ? 'bg-gradient-to-r from-red-600 to-rose-700' : 'bg-gradient-to-r from-indigo-600 to-violet-700'}`}>
-                                {star.direction}
+            return (
+                <div className="min-h-screen bg-slate-50 text-slate-800 font-sans py-12 px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-7xl mx-auto">
+                        
+                        {/* Header Section */}
+                        <header className="text-center mb-16 relative">
+                            {/* Decorative background element */}
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-violet-200 rounded-full blur-3xl opacity-30 -z-10"></div>
+                            
+                            {/* Title: Maximized One Line */}
+                            <h1 className="w-full whitespace-nowrap text-center font-black text-indigo-900 mb-6 drop-shadow-sm
+                                text-xl min-[375px]:text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tighter sm:tracking-normal">
+                                2026丙午馬年．九宮飛星 開運布局
+                            </h1>
+                            
+                            <div className="flex flex-col gap-2 justify-center items-center text-slate-600 font-medium text-sm md:text-base">
+                                <div className="flex items-center gap-2 bg-white/60 px-4 py-1 rounded-full shadow-sm border border-slate-100">
+                                    <span className="text-lg">🔥</span>
+                                    <span className="text-indigo-800 font-semibold">九運核心：火運當令，九紫為尊，一白為輔</span>
+                                </div>
                             </div>
+                        </header>
 
-                            {/* Top Right Star Number (Watermark) */}
-                            <div className="absolute top-2 right-4 text-8xl font-serif font-black text-slate-100 select-none z-0 opacity-80">
-                                {star.num}
-                            </div>
-
-                            {/* Card Content Container */}
-                            <div className="p-6 pt-16 flex-grow flex flex-col relative z-10">
-                                
-                                {/* Title Section */}
-                                <div className="mb-4 border-b border-slate-100 pb-3">
-                                    <div className="flex items-center gap-2 mb-1">
-                                        <h3 className="text-2xl font-bold text-slate-800">{star.name}</h3>
-                                        <span className={`px-2 py-0.5 text-xs font-bold rounded-md border
-                                            ${star.type === 'good' ? 'bg-emerald-50 text-emerald-700 border-emerald-100' : 'bg-rose-50 text-rose-700 border-rose-100'}`}>
-                                            {star.type === 'good' ? '吉星' : '凶星'}
-                                        </span>
+                        {/* Grid Layout */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {stars.map((star) => (
+                                <div 
+                                    key={star.id} 
+                                    className={`bg-white rounded-2xl shadow-lg overflow-hidden border flex flex-col relative transition-all hover:shadow-2xl hover:-translate-y-1 duration-300 
+                                    ${star.num === 5 ? 'border-red-200 ring-1 ring-red-100' : 'border-slate-100'}`}
+                                >
+                                    {/* Top Left Direction Badge */}
+                                    <div className={`absolute top-0 left-0 text-white font-bold text-lg px-6 py-2 rounded-br-2xl shadow-md z-10 tracking-widest
+                                        ${star.num === 5 ? 'bg-gradient-to-r from-red-600 to-rose-700' : 'bg-gradient-to-r from-indigo-600 to-violet-700'}`}>
+                                        {star.direction}
                                     </div>
-                                    <div className="flex flex-wrap items-center gap-y-1 text-lg font-semibold text-violet-700">
-                                        <div className="flex items-center mr-3">
-                                            <star.IconComponent className="w-5 h-5" />
-                                            <span className="ml-2">{star.typeLabel}</span>
-                                        </div>
+
+                                    {/* Top Right Star Number (Watermark) */}
+                                    <div className="absolute top-2 right-4 text-8xl font-serif font-black text-slate-100 select-none z-0 opacity-80">
+                                        {star.num}
                                     </div>
-                                    <div className="mt-2 flex items-center justify-between text-xs">
-                                        <div className="text-slate-500">五行屬{star.element}</div>
-                                        <div className="bg-slate-100 text-slate-600 px-2 py-1 rounded font-medium">
-                                            {star.periodStatus}
-                                        </div>
-                                    </div>
-                                </div>
 
-                                {/* Focus Section */}
-                                <div className="bg-slate-50 rounded-lg p-3 mb-5 border-l-4 border-indigo-400">
-                                    <p className="text-sm text-slate-700">
-                                        <span className="font-bold text-indigo-700 mr-1">開運重點：</span>
-                                        {star.focus}
-                                    </p>
-                                </div>
-
-                                {/* Description */}
-                                <div className="text-slate-600 text-justify leading-relaxed text-sm space-y-3 mb-6 flex-grow">
-                                    {star.desc.map((paragraph, idx) => {
-                                        // Special styling for the numbered list items in Star 5
-                                        const isListItem = /^[1-9]\./.test(paragraph);
-                                        const isHeader = paragraph.includes('策略：');
-                                        const isWarning = paragraph.includes('注意') || paragraph.includes('危險');
-
-                                        return (
-                                            <p key={idx} className={`
-                                                ${isWarning ? 'font-bold text-rose-600' : ''}
-                                                ${isHeader ? 'font-bold text-slate-800 mt-2' : ''}
-                                                ${isListItem ? 'pl-4 -mt-1' : ''}
-                                            `}>
-                                                {paragraph}
-                                            </p>
-                                        );
-                                    })}
-                                </div>
-
-                                {/* Solution Box (Bottom) */}
-                                <div className={`mt-auto rounded-xl p-4 border 
-                                    ${star.num === 5 ? 'bg-rose-50 border-rose-100' : 'bg-indigo-50 border-indigo-100'}`}>
-                                    <div className={`text-xs font-bold uppercase tracking-widest mb-3 border-b pb-1 
-                                        ${star.num === 5 ? 'text-rose-800 border-rose-200' : 'text-indigo-800 border-indigo-200'}`}>
-                                        極致布局策略
-                                    </div>
-                                    
-                                    <div className="flex items-start mb-3">
-                                        <span className="text-sm font-bold text-slate-700 min-w-[5rem] whitespace-nowrap flex-shrink-0 pt-0.5">建議五行：</span>
-                                        <div className="flex flex-wrap gap-2">
-                                            {star.cureElement.split('、').map((el, i) => (
-                                                <span key={i} className={`inline-block text-white text-xs px-3 py-0.5 rounded-full font-bold shadow-sm 
-                                                    ${getElementColor(el)}`}>
-                                                    {el}
+                                    {/* Card Content Container */}
+                                    <div className="p-6 pt-16 flex-grow flex flex-col relative z-10">
+                                        
+                                        {/* Title Section */}
+                                        <div className="mb-4 border-b border-slate-100 pb-3">
+                                            <div className="flex items-center gap-2 mb-1">
+                                                <h3 className="text-2xl font-bold text-slate-800">{star.name}</h3>
+                                                <span className={`px-2 py-0.5 text-xs font-bold rounded-md border
+                                                    ${star.type === 'good' ? 'bg-emerald-50 text-emerald-700 border-emerald-100' : 'bg-rose-50 text-rose-700 border-rose-100'}`}>
+                                                    {star.type === 'good' ? '吉星' : '凶星'}
                                                 </span>
-                                            ))}
+                                            </div>
+                                            <div className="flex flex-wrap items-center gap-y-1 text-lg font-semibold text-violet-700">
+                                                <div className="flex items-center mr-3">
+                                                    <star.IconComponent className="w-5 h-5" />
+                                                    <span className="ml-2">{star.typeLabel}</span>
+                                                </div>
+                                            </div>
+                                            <div className="mt-2 flex items-center justify-between text-xs">
+                                                <div className="text-slate-500">五行屬{star.element}</div>
+                                                <div className="bg-slate-100 text-slate-600 px-2 py-1 rounded font-medium">
+                                                    {star.periodStatus}
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    
-                                    <div className="flex items-start">
-                                        <span className="text-sm font-bold text-slate-700 min-w-[5rem] whitespace-nowrap flex-shrink-0">寶物推薦：</span>
-                                        <span className="text-sm text-slate-600 leading-snug">
-                                            {star.cureItems}
-                                        </span>
+
+                                        {/* Focus Section */}
+                                        <div className="bg-slate-50 rounded-lg p-3 mb-5 border-l-4 border-indigo-400">
+                                            <p className="text-sm text-slate-700">
+                                                <span className="font-bold text-indigo-700 mr-1">開運重點：</span>
+                                                {star.focus}
+                                            </p>
+                                        </div>
+
+                                        {/* Description */}
+                                        <div className="text-slate-600 text-justify leading-relaxed text-sm space-y-3 mb-6 flex-grow">
+                                            {star.desc.map((paragraph, idx) => {
+                                                // Special styling for the numbered list items in Star 5
+                                                const isListItem = /^[1-9]\./.test(paragraph);
+                                                const isHeader = paragraph.includes('策略：');
+                                                const isWarning = paragraph.includes('注意') || paragraph.includes('危險');
+
+                                                return (
+                                                    <p key={idx} className={`
+                                                        ${isWarning ? 'font-bold text-rose-600' : ''}
+                                                        ${isHeader ? 'font-bold text-slate-800 mt-2' : ''}
+                                                        ${isListItem ? 'pl-4 -mt-1' : ''}
+                                                    `}>
+                                                        {paragraph}
+                                                    </p>
+                                                );
+                                            })}
+                                        </div>
+
+                                        {/* Solution Box (Bottom) */}
+                                        <div className={`mt-auto rounded-xl p-4 border 
+                                            ${star.num === 5 ? 'bg-rose-50 border-rose-100' : 'bg-indigo-50 border-indigo-100'}`}>
+                                            <div className={`text-xs font-bold uppercase tracking-widest mb-3 border-b pb-1 
+                                                ${star.num === 5 ? 'text-rose-800 border-rose-200' : 'text-indigo-800 border-indigo-200'}`}>
+                                                極致布局策略
+                                            </div>
+                                            
+                                            <div className="flex items-start mb-3">
+                                                <span className="text-sm font-bold text-slate-700 min-w-[5rem] whitespace-nowrap flex-shrink-0 pt-0.5">建議五行：</span>
+                                                <div className="flex flex-wrap gap-2">
+                                                    {star.cureElement.split('、').map((el, i) => (
+                                                        <span key={i} className={`inline-block text-white text-xs px-3 py-0.5 rounded-full font-bold shadow-sm 
+                                                            ${getElementColor(el)}`}>
+                                                            {el}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                            
+                                            <div className="flex items-start">
+                                                <span className="text-sm font-bold text-slate-700 min-w-[5rem] whitespace-nowrap flex-shrink-0">寶物推薦：</span>
+                                                <span className="text-sm text-slate-600 leading-snug">
+                                                    {star.cureItems}
+                                                </span>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
-
-                            </div>
+                            ))}
                         </div>
-                    ))}
+
+                        {/* Footer */}
+                        <footer className="mt-16 text-center text-slate-400 text-sm pb-8 border-t border-slate-200 pt-8">
+                            <p className="mb-2 font-medium text-slate-500">© 2026 丙午馬年流年運程 • 九運風水特別篇</p>
+                            <p className="text-xs">風水命理僅供參考，積善之家必有餘慶</p>
+                        </footer>
+
+                    </div>
                 </div>
+            );
+        };
 
-                {/* Footer */}
-                <footer className="mt-16 text-center text-slate-400 text-sm pb-8 border-t border-slate-200 pt-8">
-                    <p className="mb-2 font-medium text-slate-500">© 2026 丙午馬年流年運程 • 九運風水特別篇</p>
-                    <p className="text-xs">風水命理僅供參考，積善之家必有餘慶</p>
-                </footer>
-
-            </div>
-        </div>
-    );
-};
-
-export default FengShui2026Purple;
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<FengShui2026Purple />);
+    </script>
+</body>
+</html>
